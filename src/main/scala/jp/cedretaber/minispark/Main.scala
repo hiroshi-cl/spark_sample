@@ -23,6 +23,11 @@ object Main {
       .join(langs, relations("lang_id") === langs("id"))
     result.show()
 
+    val broadcastResult = users
+      .join(broadcast(relations), users("id") === relations("user_id"))
+      .join(broadcast(langs), relations("lang_id") === langs("id"))
+    broadcastResult.show()
+
     spark.stop()
   }
 }
